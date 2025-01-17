@@ -25,5 +25,10 @@ public class Libri extends ElementoConAutore {
         this.genere = genere;
     }
 
-
+    @Override
+    public String toString() {
+        return "Libri{" +
+                "genere='" + genere + '\'' +
+                '}';
+    }
 }

@@ -1,21 +1,31 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class CatalogoBibliotecario {
 
-    private ArrayList<ElementoCatalogo> catalogoBiblioteca;
+    private List<ElementoCatalogo> catalogoBiblioteca;
+
+
+    public CatalogoBibliotecario() {
+
+        this.catalogoBiblioteca = new ArrayList<>();
+    }
 
     //METODI
 
     public void aggiungiElemento(ElementoCatalogo newElement) {
         if (catalogoBiblioteca.stream().anyMatch(element -> element.getISBN() == newElement.getISBN())) {
             System.out.println("Elemento già presente, il codice ISBN corrisponde a " + newElement.getTitle());
-        } else {
+        } else if (newElement == null){
+            System.out.println("L'elemento fornito è null.");
+        }else {
             catalogoBiblioteca.add(newElement);
             System.out.println("Elemento aggiunto con successo!");
+            System.out.println("Stato attuale del catalogo: " + catalogoBiblioteca);
         }
     }
 
@@ -41,6 +51,13 @@ public class CatalogoBibliotecario {
     public void findAutore(String autore) {
         System.out.println("Gli Elementi scritti da " + autore + " sono: ");
         catalogoBiblioteca.stream().filter(element -> element instanceof Libri && ((Libri) element).getAutore().equals(autore)).toList().forEach(System.out::println);
+    }
+
+    @Override
+    public String toString() {
+        return "CatalogoBibliotecario{" +
+                "catalogoBiblioteca=" + catalogoBiblioteca +
+                '}';
     }
 
     public void updateElemento(int ISBN) {

@@ -52,5 +52,13 @@ public class ElementoCatalogo {
         this.numPag = numPag;
     }
 
-
+    @Override
+    public String toString() {
+        return "ElementoCatalogo{" +
+                "ISBN=" + ISBN +
+                ", title='" + title + '\'' +
+                ", year=" + year +
+                ", numPag=" + numPag +
+                '}';
+    }
 }

@@ -20,4 +20,10 @@ public class ElementoConAutore extends ElementoCatalogo {
         this.autore = autore;
     }
 
+    @Override
+    public String toString() {
+        return "ElementoConAutore{" +
+                "autore='" + autore + '\'' +
+                '}';
+    }
 }
