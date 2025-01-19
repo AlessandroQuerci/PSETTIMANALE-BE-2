@@ -1,9 +1,10 @@
 package org.example;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
+
 
 public class CatalogoBibliotecario {
 
@@ -51,6 +52,59 @@ public class CatalogoBibliotecario {
     public void findAutore(String autore) {
         System.out.println("Gli Elementi scritti da " + autore + " sono: ");
         catalogoBiblioteca.stream().filter(element -> element instanceof Libri && ((Libri) element).getAutore().equals(autore)).toList().forEach(System.out::println);
+    }
+
+    public void statisticheCatalogo(){
+
+
+        ArrayList<Libri> libriCatalogo = new ArrayList<Libri>();
+        ArrayList<Riviste> rivisteCatalogo = new ArrayList<Riviste>();
+        Object elementoConPagineMassime = null;
+        int maxPagine = 0;
+        int sommaPagine = 0;
+        int numeroElementi = 0;
+
+
+        for (Object elemento : catalogoBiblioteca) {
+            if (elemento instanceof Libri) {
+
+                libriCatalogo.add((Libri) elemento);
+            } else if (elemento instanceof Riviste) {
+                // Aggiungi all'array delle riviste
+                rivisteCatalogo.add((Riviste) elemento);
+            }
+        }
+
+        for (Object elemento : catalogoBiblioteca) {
+
+                Libri libro = (Libri) elemento;
+                sommaPagine += libro.getNumPag();
+                numeroElementi++;
+                int numeroPagine = libro.getNumPag();
+
+
+                if (numeroPagine > maxPagine) {
+                    maxPagine = numeroPagine;
+                    elementoConPagineMassime = libro;
+                }
+            }
+
+        if (numeroElementi > 0) {
+            double mediaPagine = (double) sommaPagine / numeroElementi;
+            System.out.println("LA MEDIA DELLE PAGINE CORRISPONDE A " + mediaPagine);
+
+        } else {
+            System.out.println("IL CATALOGO È VUOTO!");
+        }
+
+
+
+        System.out.println("IL NUMERO DI LIBRI PRESENTI NEL CATALOGO SONO: " + libriCatalogo + "\n");
+        System.out.println("IL NUMERO DI RIVISTE PRESENTI NEL CATALOGO SONO: " + rivisteCatalogo + "\n");
+        System.out.println("IL LIBRO CON IL MAGGIOR NUMERO DI PAGINE EQUIVALE A " + elementoConPagineMassime + " CON " + maxPagine + " PAGINE" +"\n" );
+
+
+
     }
 
     @Override

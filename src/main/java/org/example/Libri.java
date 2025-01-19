@@ -5,6 +5,7 @@ public class Libri extends ElementoConAutore {
 
     private String genere ;
 
+
     //COSTRUTTORE
 
     public Libri(int ISBN, String title, int year, int numPag, String autore, String genere) {

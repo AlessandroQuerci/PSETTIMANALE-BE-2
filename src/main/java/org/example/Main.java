@@ -93,6 +93,10 @@ while(true){
             int ISBN = Integer.parseInt(scanner.nextLine());
             catalogo.updateElemento(ISBN);
             break;
+        case 7:
+            System.out.println("---STATISTICHE CATALOGO---");
+            catalogo.statisticheCatalogo();
+            break;
         case 0:
             System.out.println("Arrivederci!");
             scanner.close();
